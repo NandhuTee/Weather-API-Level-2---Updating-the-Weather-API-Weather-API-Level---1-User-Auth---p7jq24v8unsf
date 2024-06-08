@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    
     password: {
       type: String,
       required: true,
@@ -26,7 +27,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// pre-save hook to hash password before saving to the database
 userSchema.pre('save', async function (next) {
   const user = this;
   const salt = await bcrypt.genSalt(10);
